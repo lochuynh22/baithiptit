@@ -1,45 +1,65 @@
 #include <iostream>
-#include <vector>
+using namespace std;
 
-std::vector<std::vector<int>> convolve(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B, int N, int M) {
-    std::vector<std::vector<int>> result(N, std::vector<int>(N, 0));
+void multiplyMatrices(int N, int** A, int M, int** B, int** result) {
     for (int i = 0; i < N; i += M) {
         for (int j = 0; j < N; j += M) {
-            for (int k = 0; k < M; ++k) {
-                for (int l = 0; l < M; ++l) {
-                    result[i + k][j + l] += A[i + k][j + l] * B[k][l];
+            for (int k = 0; k < M; k++) {
+                for (int l = 0; l < M; l++) {
+                    result[i + k][j + l] = A[i + k][j + l] * B[k][l];
                 }
             }
         }
     }
-    return result;
 }
 
 int main() {
     int N, M;
-    std::cin >> N;
-    std::vector<std::vector<int>> A(N, std::vector<int>(N));
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            std::cin >> A[i][j];
+    cin >> N;
+    
+    int** A = new int*[N];
+    for (int i = 0; i < N; i++) {
+        A[i] = new int[N];
+        for (int j = 0; j < N; j++) {
+            cin >> A[i][j];
         }
     }
-    std::cin >> M;
-    std::vector<std::vector<int>> B(M, std::vector<int>(M));
-    for (int i = 0; i < M; ++i) {
-        for (int j = 0; j < M; ++j) {
-            std::cin >> B[i][j];
+    
+    cin >> M;
+    
+    int** B = new int*[M];
+    for (int i = 0; i < M; i++) {
+        B[i] = new int[M];
+        for (int j = 0; j < M; j++) {
+            cin >> B[i][j];
         }
     }
-
-    std::vector<std::vector<int>> result = convolve(A, B, N, M);
-
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            std::cout << result[i][j] << " ";
-        }
-        std::cout << std::endl;
+    
+    int** result = new int*[N];
+    for (int i = 0; i < N; i++) {
+        result[i] = new int[N];
     }
-
+    
+    multiplyMatrices(N, A, M, B, result);
+    
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << result[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    for (int i = 0; i < N; i++) {
+        delete[] A[i];
+        delete[] result[i];
+    }
+    delete[] A;
+    delete[] result;
+    
+    for (int i = 0; i < M; i++) {
+        delete[] B[i];
+    }
+    delete[] B;
+    
     return 0;
 }
