@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int isPerfectNumber(int num) {
+int ktsnt(int num) {
     int sum = 0;
     for (int i = 1; i <= num / 2; i++) {
         if (num % i == 0) {
@@ -35,7 +35,7 @@ int main() {
     printf("cac phan tu hoan hao: ");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (isPerfectNumber(A[i][j])) {
+            if (ktsnt(A[i][j])) {
                 printf("%d ", A[i][j]);
             }
         }
