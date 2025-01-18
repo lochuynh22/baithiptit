@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-// Cấu trúc lưu trữ thông tin của một sinh viên
+
 struct SinhVien {
     char maSV[100];
     char hoTen[100];
@@ -11,7 +11,7 @@ struct SinhVien {
     char email[100];
 };
 
-// Hàm kiểm tra sinh viên thuộc ngành nào
+
 bool thuocNganh(const SinhVien& sv, const string& nganh) {
     if (nganh == "KE TOAN" && strstr(sv.maSV, "DCKT") != nullptr) {
         return true;
@@ -32,11 +32,11 @@ bool thuocNganh(const SinhVien& sv, const string& nganh) {
 }
 
 int main() {
-    int n; // Số lượng sinh viên
+    int n; 
     cin >> n;
-    cin.ignore(); // Bỏ qua ký tự xuống dòng sau số lượng
+    cin.ignore();
 
-    SinhVien danhSach[1000]; // Mảng tĩnh lưu thông tin sinh viên
+    SinhVien danhSach[1000]; 
     for (int i = 0; i < n; ++i) {
         cin.getline(danhSach[i].maSV, 100);
         cin.getline(danhSach[i].hoTen, 100);
@@ -44,9 +44,9 @@ int main() {
         cin.getline(danhSach[i].email, 100);
     }
 
-    int q; // Số lượng truy vấn ngành
+    int q; 
     cin >> q;
-    cin.ignore(); // Bỏ qua ký tự xuống dòng
+    cin.ignore();
 
     while (q--) {
         string nganh;

@@ -9,7 +9,7 @@ bool isPalindrome(int number) {
     }
     return reversed == original;
 }
-
+    
 int main() {
     printf("Cac so thuan nghich doc co 6 chu so:\n");
     for (int i = 100000; i <= 999999; i++) {
